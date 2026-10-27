@@ -1,0 +1,17 @@
+[theme]
+primaryColor = "#2A7DEB"
+
+[theme.light]
+primaryColor = "#2A7DEB"
+
+[theme.dark]
+primaryColor = "#2A7DEB"
+
+[theme.sidebar]
+primaryColor = "#2A7DEB"
+
+[theme.light.sidebar]
+primaryColor = "#2A7DEB"
+
+[theme.dark.sidebar]
+primaryColor = "#2A7DEB"

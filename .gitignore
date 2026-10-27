@@ -1,0 +1,29 @@
+# Python cache and local environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Local IDE and operating-system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Secrets and environment variables
+.env
+.env.*
+.streamlit/secrets.toml
+
+# Student/research datasets and exported user progress
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.json
+
+# Local logs and temporary files
+*.log
+*.tmp
+~$*
