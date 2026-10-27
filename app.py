@@ -1625,6 +1625,48 @@ div[data-baseweb="tab-highlight"] {
 </style>
 """, unsafe_allow_html=True)
 
+# On touch devices, Streamlit's searchable selectboxes focus their internal
+# text input and open the software keyboard. Keep the dropdown fully tappable,
+# but make that internal search field read-only only on mobile/touch screens.
+components.html(
+    """
+    <script>
+        (function () {
+            const parentWindow = window.parent;
+            const parentDocument = parentWindow.document;
+            const isTouchDevice =
+                parentWindow.matchMedia("(pointer: coarse)").matches ||
+                parentWindow.matchMedia("(max-width: 768px)").matches;
+
+            if (!isTouchDevice) {
+                return;
+            }
+
+            function disableSelectboxKeyboard() {
+                parentDocument
+                    .querySelectorAll('[data-baseweb="select"] input')
+                    .forEach(function (input) {
+                        input.readOnly = true;
+                        input.setAttribute("inputmode", "none");
+                        input.setAttribute("autocomplete", "off");
+                    });
+            }
+
+            disableSelectboxKeyboard();
+
+            const observer = new MutationObserver(
+                disableSelectboxKeyboard
+            );
+            observer.observe(parentDocument.body, {
+                childList: true,
+                subtree: true
+            });
+        })();
+    </script>
+    """,
+    height=0,
+)
+
 # -----------------------------
 # Example curriculum
 # Later we will replace this with a real curriculum file
