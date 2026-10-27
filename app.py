@@ -2019,6 +2019,17 @@ def state_aware_selectbox(
     )
 
 
+def reset_course_time_defaults():
+    """Recalculate automatic course dates after an entry-profile change."""
+    temporal_prefixes = (
+        "success_year_",
+        "success_period_",
+    )
+    for state_key in list(st.session_state):
+        if state_key.startswith(temporal_prefixes):
+            del st.session_state[state_key]
+
+
 def progress_state_for_export():
     """Return only the profile and course fields entered by the user."""
     saved_state = {}
@@ -2104,6 +2115,7 @@ enrollment_academic_year = state_aware_selectbox(
     academic_years,
     key="enrollment_academic_year",
     default_index=0,
+    on_change=reset_course_time_defaults,
 )
 
 enrollment_semester = state_aware_selectbox(
@@ -2112,6 +2124,7 @@ enrollment_semester = state_aware_selectbox(
     list(range(1, 7)),
     key="enrollment_semester",
     default_index=0,
+    on_change=reset_course_time_defaults,
     help=(
         "Δήλωσε το εξάμηνο στο οποίο πραγματοποιήθηκε "
         "η εισαγωγή σου."
