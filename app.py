@@ -2657,7 +2657,7 @@ progress_json = json.dumps(
 ).encode("utf-8")
 
 st.sidebar.download_button(
-    "Αποθήκευση προόδου",
+        "Λήψη αρχείου προόδου ⇩",
     data=progress_json,
     file_name="akadimaiki_proodos.json",
     mime="application/json",
